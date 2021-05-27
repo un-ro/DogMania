@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dog Mania</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
