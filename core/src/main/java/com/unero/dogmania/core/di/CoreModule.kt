@@ -1,16 +1,30 @@
 package com.unero.dogmania.core.di
 
+import androidx.room.Room
+import com.unero.dogmania.core.data.Repository
+import com.unero.dogmania.core.data.source.local.LocalDataSource
+import com.unero.dogmania.core.data.source.local.room.AppDatabase
+import com.unero.dogmania.core.data.source.remote.RemoteDataSource
 import com.unero.dogmania.core.data.source.remote.network.Endpoint
+import com.unero.dogmania.core.domain.repository.IRepository
 import com.unero.dogmania.core.utils.AppExecutors
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val roomModule = module {
-
+    factory { get<AppDatabase>().favoriteDao() }
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            AppDatabase::class.java,
+            "Dog.db"
+        ).fallbackToDestructiveMigration().build()
+    }
 }
 
 val retrofitModule = module {
@@ -23,7 +37,7 @@ val retrofitModule = module {
     }
     single {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/breed")
+            .baseUrl("https://dog.ceo/api/breeds/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
@@ -32,5 +46,10 @@ val retrofitModule = module {
 }
 
 val repositoryModule = module {
+    single { LocalDataSource(get()) }
+    single { RemoteDataSource(get()) }
     factory { AppExecutors() }
+    single<IRepository> {
+        Repository(get(), get(), get())
+    }
 }
