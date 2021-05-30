@@ -6,4 +6,5 @@ class DogInteractor(private val repository: IRepository): DogUseCase {
     override fun getAll() = repository.getAll()
 
     override fun getFavorites() = repository.getFavorites()
+    override suspend fun getRandom() = repository.getRandom()
 }

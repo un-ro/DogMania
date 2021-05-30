@@ -8,15 +8,17 @@ object Mapper {
 
     fun mapResponseToEntities(input: RandomResponse): List<DogEntity> {
         val dogList = ArrayList<DogEntity>()
-        dogList.add(
-            DogEntity(
-                id = 0,
-                image = input.images,
-                comment = "",
-                date = "",
-                isFavorite = false
+        for (dog in input.images) {
+            dogList.add(
+                DogEntity(
+                    id = 0,
+                    image = dog,
+                    comment = "",
+                    date = "",
+                    isFavorite = false
+                )
             )
-        )
+        }
         return dogList
     }
 

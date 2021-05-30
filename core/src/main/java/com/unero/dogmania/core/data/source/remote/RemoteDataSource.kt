@@ -13,7 +13,7 @@ class RemoteDataSource(private val endpoint: Endpoint) {
     suspend fun getRandom(): Flow<ApiResponse<RandomResponse>> {
         return flow {
             try {
-                val response = endpoint.getRandom()
+                val response = endpoint.getRandomFor()
                 if (response.status == "success") {
                     emit(ApiResponse.Success(response))
                 } else {

@@ -16,6 +16,8 @@ class Repository(
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ): IRepository {
+    override suspend fun getRandom(): Flow<ApiResponse<RandomResponse>> = remoteDataSource.getRandom()
+
     override fun getAll(): Flow<Resource<List<Dog>>> =
         object : NetworkBoundResource<List<Dog>, RandomResponse>(appExecutors) {
             override fun loadFromDB(): Flow<List<Dog>> {
