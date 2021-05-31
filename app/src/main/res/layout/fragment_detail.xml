@@ -67,6 +67,8 @@
         app:layout_constraintBottom_toBottomOf="@id/cv"
         app:layout_constraintEnd_toEndOf="@id/cv"
         android:layout_margin="8dp"
+        android:backgroundTint="#D15A5A"
+        android:tint="#FF00C0"
         android:contentDescription="@string/favorite" />
 
     <com.google.android.material.button.MaterialButton

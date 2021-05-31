@@ -1,4 +1,4 @@
-package com.unero.dogmania.favorite.ui
+package com.unero.dogmania.favorite
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,12 +8,11 @@ import org.koin.android.ext.android.inject
 class FavoriteActivity : AppCompatActivity() {
 
     private val viewModel: FavoriteViewModel by inject()
-    private var _binding: ActivityFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityFavoriteBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityFavoriteBinding.inflate(layoutInflater)
+        binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }

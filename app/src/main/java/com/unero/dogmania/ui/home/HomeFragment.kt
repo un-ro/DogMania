@@ -1,10 +1,13 @@
 package com.unero.dogmania.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.unero.dogmania.R
 import com.unero.dogmania.adapter.ItemAdapter
 import com.unero.dogmania.core.data.Resource
 import com.unero.dogmania.databinding.FragmentHomeBinding
@@ -42,6 +45,22 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.item_favorite -> {
+                    val uri = Uri.parse("dogmania://loved")
+                    startActivity(Intent(Intent.ACTION_VIEW, uri))
+                    true
+                }
+                R.id.item_search -> {
+                    val uri = Uri.parse("dogmania://search")
+                    startActivity(Intent(Intent.ACTION_VIEW, uri))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setupRV() {

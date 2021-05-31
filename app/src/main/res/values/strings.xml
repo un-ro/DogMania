@@ -3,4 +3,6 @@
     <string name="title_favorite">Favorite</string>
     <string name="add_comment">Add Comment (max 15)</string>
     <string name="favorite">favorite</string>
+    <string name="title_search">Search</string>
+    <string name="title_loved">Loved</string>
 </resources>

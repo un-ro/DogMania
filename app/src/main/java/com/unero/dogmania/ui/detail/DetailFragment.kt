@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -37,17 +38,39 @@ class DetailFragment : Fragment() {
     }
 
     private fun setUI() {
-        val progress = CircularProgressDrawable(requireContext())
-        progress.strokeWidth = 5f
-        progress.centerRadius = 30f
-        progress.start()
+        var status = args.item.isFavorite
+        setStatusFavorite(status)
+
         with(binding) {
             tvUrl.text = args.item.image
             Glide.with(requireContext())
                 .load(args.item.image)
-                .placeholder(progress)
+                .placeholder(loadIndicator())
                 .error(R.drawable.ic_error_image)
                 .into(ivImage)
+
+            // Favorite
+            fab.setOnClickListener {
+                status = !status
+                viewModel.setFavorite(args.item, status)
+                setStatusFavorite(status)
+            }
+        }
+    }
+
+    private fun loadIndicator(): CircularProgressDrawable{
+        val progress = CircularProgressDrawable(requireContext())
+        progress.strokeWidth = 5f
+        progress.centerRadius = 30f
+        progress.start()
+        return progress
+    }
+
+    private fun setStatusFavorite(statusFavorite: Boolean) {
+        if (statusFavorite) {
+            binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_fill))
+        } else {
+            binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
         }
     }
 }
