@@ -1,10 +1,10 @@
 package com.unero.dogmania
 
 import android.app.Application
-import com.unero.dogmania.core.di.adapterModule
 import com.unero.dogmania.core.di.repositoryModule
 import com.unero.dogmania.core.di.retrofitModule
 import com.unero.dogmania.core.di.roomModule
+import com.unero.dogmania.di.adapterModule
 import com.unero.dogmania.di.useCaseModule
 import com.unero.dogmania.di.viewModelModule
 import org.koin.android.ext.koin.androidContext

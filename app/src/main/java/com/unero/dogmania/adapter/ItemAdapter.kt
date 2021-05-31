@@ -1,13 +1,16 @@
-package com.unero.dogmania.core.adapter
+package com.unero.dogmania.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.unero.dogmania.core.R
 import com.unero.dogmania.core.databinding.ItemBinding
 import com.unero.dogmania.core.domain.model.Dog
+import com.unero.dogmania.ui.home.HomeFragmentDirections
 
 class ItemAdapter(private val context: Context): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
@@ -31,7 +34,12 @@ class ItemAdapter(private val context: Context): RecyclerView.Adapter<ItemAdapte
                 Glide.with(root)
                     .load(dog.image)
                     .placeholder(progress)
+                    .error(R.drawable.ic_error_image)
                     .into(ivImage)
+                root.setOnClickListener {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(dog)
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

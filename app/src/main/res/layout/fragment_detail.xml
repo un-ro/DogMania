@@ -20,9 +20,8 @@
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="400dp"
             android:background="@android:color/white"
-            android:scaleType="centerCrop"
             android:contentDescription="@string/iv_image" />
     </androidx.cardview.widget.CardView>
 
@@ -30,11 +29,20 @@
         android:id="@+id/edtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Favorite Title"
+        android:hint="@string/add_comment"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         app:layout_constraintTop_toBottomOf="@id/cv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" >
     </com.google.android.material.textfield.TextInputEditText>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edtTitle"
+        android:text="@string/save_to_favorite"
+        android:layout_margin="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,11 +7,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        def nav_version = "2.3.5"
         classpath "com.android.tools.build:gradle:4.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 
@@ -41,6 +40,7 @@ ext {
     // Navigation
     fragment_ktx_version = "1.2.5"
     activity_ktx_version = "1.1.0"
+    nav_version = "2.3.5"
 
     // Room
     room_version = "2.3.0"

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.unero.dogmania.core.adapter.ItemAdapter
+import com.unero.dogmania.adapter.ItemAdapter
 import com.unero.dogmania.core.data.Resource
 import com.unero.dogmania.databinding.FragmentHomeBinding
 import org.koin.android.ext.android.inject

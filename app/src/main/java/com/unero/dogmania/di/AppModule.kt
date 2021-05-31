@@ -1,5 +1,6 @@
 package com.unero.dogmania.di
 
+import com.unero.dogmania.adapter.ItemAdapter
 import com.unero.dogmania.core.domain.usecase.DogInteractor
 import com.unero.dogmania.core.domain.usecase.DogUseCase
 import com.unero.dogmania.ui.detail.DetailViewModel
@@ -14,4 +15,8 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel(get()) }
+}
+
+val adapterModule = module {
+    single { ItemAdapter(get()) }
 }

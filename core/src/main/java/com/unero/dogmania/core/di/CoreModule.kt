@@ -1,7 +1,6 @@
 package com.unero.dogmania.core.di
 
 import androidx.room.Room
-import com.unero.dogmania.core.adapter.ItemAdapter
 import com.unero.dogmania.core.data.Repository
 import com.unero.dogmania.core.data.source.local.LocalDataSource
 import com.unero.dogmania.core.data.source.local.room.AppDatabase
@@ -53,8 +52,4 @@ val repositoryModule = module {
     single<IRepository> {
         Repository(get(), get(), get())
     }
-}
-
-val adapterModule = module {
-    single { ItemAdapter(get()) }
 }
