@@ -42,6 +42,7 @@ class DetailFragment : Fragment() {
         progress.centerRadius = 30f
         progress.start()
         with(binding) {
+            tvUrl.text = args.item.image
             Glide.with(requireContext())
                 .load(args.item.image)
                 .placeholder(progress)

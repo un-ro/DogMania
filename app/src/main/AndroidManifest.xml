@@ -11,7 +11,7 @@
         android:icon="@mipmap/logo"
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="false"
-        android:theme="@style/Theme.DogMania">
+        android:theme="@style/Theme.MaterialComponents.NoActionBar">
 
         <activity android:name=".MainActivity">
             <intent-filter>
