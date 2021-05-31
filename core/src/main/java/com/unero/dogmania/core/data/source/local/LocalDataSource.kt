@@ -12,4 +12,9 @@ class LocalDataSource(private val favoriteDao: DogDao) {
     suspend fun insertAll(dogs: List<DogEntity>) = favoriteDao.insertAll(dogs)
 
     suspend fun deleteAll() = favoriteDao.deleteAll()
+
+    fun setFavorite(dog: DogEntity, newState: Boolean) {
+        dog.isFavorite = newState
+        favoriteDao.update(dog)
+    }
 }

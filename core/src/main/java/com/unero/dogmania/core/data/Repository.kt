@@ -43,4 +43,9 @@ class Repository(
             Mapper.mapEntitiesToDomain(it)
         }
     }
+
+    override fun setFavorite(dog: Dog, state: Boolean) {
+        val entity = Mapper.mapDomainToEntity(dog)
+        appExecutors.diskIO().execute { localDataSource.setFavorite(entity, state) }
+    }
 }

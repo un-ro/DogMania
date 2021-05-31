@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface DogUseCase {
     fun getRandom(): Flow<Resource<List<Dog>>>
     fun getFavorites(): Flow<List<Dog>>
+    fun setFavorite(dog: Dog, state: Boolean)
 }
