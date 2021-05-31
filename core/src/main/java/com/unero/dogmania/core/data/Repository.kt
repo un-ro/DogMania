@@ -16,9 +16,7 @@ class Repository(
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ): IRepository {
-    override suspend fun getRandom(): Flow<ApiResponse<RandomResponse>> = remoteDataSource.getRandom()
-
-    override fun getAll(): Flow<Resource<List<Dog>>> =
+    override fun getRandom(): Flow<Resource<List<Dog>>> =
         object : NetworkBoundResource<List<Dog>, RandomResponse>(appExecutors) {
             override fun loadFromDB(): Flow<List<Dog>> {
                 return localDataSource.getAll().map {
@@ -34,8 +32,10 @@ class Repository(
 
             override suspend fun saveCallResult(data: RandomResponse) {
                 val dogList = Mapper.mapResponseToEntities(data)
-                localDataSource.insert(dogList)
+                localDataSource.deleteAll()
+                localDataSource.insertAll(dogList)
             }
+
         }.asFlow()
 
     override fun getFavorites(): Flow<List<Dog>> {

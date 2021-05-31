@@ -1,4 +1,4 @@
-package com.unero.dogmania.ui.home
+package com.unero.dogmania.core.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,40 +7,41 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.unero.dogmania.core.databinding.ItemBinding
+import com.unero.dogmania.core.domain.model.Dog
 
-class HomeAdapter(private val context: Context): RecyclerView.Adapter<HomeAdapter.HomveViewHolder>() {
+class ItemAdapter(private val context: Context): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-    private val list = mutableListOf<String>()
+    private var list = mutableListOf<Dog>()
 
-    fun setData(newList: List<String>) {
+    fun setList(newList: List<Dog>) {
         list.clear()
         list.addAll(newList)
         notifyDataSetChanged()
     }
 
-    class HomveViewHolder(private val binding: ItemBinding, context: Context): RecyclerView.ViewHolder(binding.root) {
-
+    inner class ItemViewHolder(private val binding: ItemBinding, context: Context):
+        RecyclerView.ViewHolder(binding.root) {
         private val progress = CircularProgressDrawable(context)
 
-        fun bind(image: String) {
+        fun bind(dog: Dog) {
             progress.strokeWidth = 5f
             progress.centerRadius = 30f
             progress.start()
             binding.apply {
                 Glide.with(root)
-                    .load(image)
+                    .load(dog.image)
                     .placeholder(progress)
                     .into(ivImage)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomveViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomveViewHolder(binding, context)
+        return ItemViewHolder(binding, context)
     }
 
-    override fun onBindViewHolder(holder: HomveViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(list[position])
     }
 

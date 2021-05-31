@@ -6,5 +6,5 @@ import com.unero.dogmania.core.data.source.local.entity.DogEntity
 
 @Database(entities = [DogEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
-    abstract fun favoriteDao(): FavoriteDao
+    abstract fun favoriteDao(): DogDao
 }

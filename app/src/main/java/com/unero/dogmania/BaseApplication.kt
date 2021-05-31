@@ -1,6 +1,7 @@
 package com.unero.dogmania
 
 import android.app.Application
+import com.unero.dogmania.core.di.adapterModule
 import com.unero.dogmania.core.di.repositoryModule
 import com.unero.dogmania.core.di.retrofitModule
 import com.unero.dogmania.core.di.roomModule
@@ -23,7 +24,8 @@ class BaseApplication: Application() {
                     retrofitModule,
                     repositoryModule,
                     useCaseModule,
-                    viewModelModule
+                    viewModelModule,
+                    adapterModule
                 )
             )
         }
