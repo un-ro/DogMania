@@ -4,13 +4,11 @@
     package="com.unero.dogmania.search">
 
     <dist:module
-        dist:instant="false"
+        dist:instant="true"
         dist:title="@string/title_search">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
-
-        <dist:fusing dist:include="true" />
     </dist:module>
 
     <application>

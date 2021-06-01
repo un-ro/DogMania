@@ -4,13 +4,11 @@
     package="com.unero.dogmania.loved">
 
     <dist:module
-        dist:instant="false"
+        dist:instant="true"
         dist:title="@string/title_loved">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
-
-        <dist:fusing dist:include="true" />
     </dist:module>
 
     <application>
