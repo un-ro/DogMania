@@ -2,6 +2,7 @@ package com.unero.dogmania.loved
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.unero.dogmania.adapter.ItemAdapter
 import com.unero.dogmania.loved.databinding.ActivityLovedBinding
@@ -24,6 +25,10 @@ class LovedActivity : AppCompatActivity() {
         with (binding.rvDog) {
             adapter = itemAdapter
             setHasFixedSize(true)
+        }
+
+        itemAdapter.onItemClick = {
+            Toast.makeText(this, "Favorite only show list.", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.favorites.observe(this, { dogs ->

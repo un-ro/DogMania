@@ -5,6 +5,7 @@ import com.unero.dogmania.core.domain.usecase.DogInteractor
 import com.unero.dogmania.core.domain.usecase.DogUseCase
 import com.unero.dogmania.ui.detail.DetailViewModel
 import com.unero.dogmania.ui.home.HomeViewModel
+import com.unero.dogmania.ui.search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -15,6 +16,7 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel(get()) }
+    viewModel { SearchViewModel(get()) }
 }
 
 val adapterModule = module {
