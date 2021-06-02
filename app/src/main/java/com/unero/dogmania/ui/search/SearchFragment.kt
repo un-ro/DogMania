@@ -47,7 +47,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         viewModel.search(selected.toString()).observe(viewLifecycleOwner, {
             when (it) {
                 is ApiResponse.Empty -> Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT).show()
-                is ApiResponse.Error -> Toast.makeText(requireContext(), it.errorMessage, Toast.LENGTH_SHORT).show()
+                is ApiResponse.Error -> Toast.makeText(requireContext(), "Cannot Search for $selected", Toast.LENGTH_SHORT).show()
                 is ApiResponse.Success -> {
                     setupRV(Mapper.mapResponseToDomain(it.data))
                     binding.progressBar.visibility = View.GONE

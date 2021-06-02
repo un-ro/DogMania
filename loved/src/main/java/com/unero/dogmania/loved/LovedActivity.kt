@@ -8,6 +8,7 @@ import com.unero.dogmania.adapter.ItemAdapter
 import com.unero.dogmania.loved.databinding.ActivityLovedBinding
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class LovedActivity : AppCompatActivity() {
 
@@ -36,5 +37,10 @@ class LovedActivity : AppCompatActivity() {
             itemAdapter.notifyDataSetChanged()
             binding.tvStatus.visibility = if (dogs.isNotEmpty()) View.GONE else View.VISIBLE
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unloadKoinModules(lovedModule)
     }
 }

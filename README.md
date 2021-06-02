@@ -7,3 +7,6 @@ Submission 1 for MADE Class by Dicoding.
 - Reactive Programming: Kotlin Flow
 - Dependency Injection: ??Koin??
 - Modularization: Library & Dynamic Feature
+
+## Review
+![Submission 1](git_assets/submission1.png)
