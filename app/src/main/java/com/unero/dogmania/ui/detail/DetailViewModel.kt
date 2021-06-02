@@ -6,4 +6,6 @@ import com.unero.dogmania.core.domain.usecase.DogUseCase
 
 class DetailViewModel(private val useCase: DogUseCase) : ViewModel() {
     fun setFavorite(dog: Dog, state: Boolean) = useCase.setFavorite(dog, state)
+
+    fun setComment(dog: Dog, comment: String) = useCase.setComment(dog, comment)
 }

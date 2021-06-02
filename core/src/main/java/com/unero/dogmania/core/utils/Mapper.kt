@@ -22,6 +22,22 @@ object Mapper {
         return dogList
     }
 
+    fun mapResponseToDomain(input: RandomResponse): List<Dog> {
+        val dogList = ArrayList<Dog>()
+        for (dog in input.images) {
+            dogList.add(
+                Dog(
+                    id = 0,
+                    image = dog,
+                    comment = "",
+                    date = "",
+                    isFavorite = false
+                )
+            )
+        }
+        return dogList
+    }
+
     fun mapEntitiesToDomain(input: List<DogEntity>): List<Dog> =
         input.map {
             Dog (

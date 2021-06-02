@@ -25,4 +25,20 @@ class RemoteDataSource(private val endpoint: Endpoint) {
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun getSearch(breed: String): Flow<ApiResponse<RandomResponse>> {
+        return flow {
+            try {
+                val response = endpoint.getSearch(breed)
+                if (response.status == "success") {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

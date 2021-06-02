@@ -1,14 +1,17 @@
 package com.unero.dogmania.ui.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.unero.dogmania.R
 import com.unero.dogmania.databinding.FragmentDetailBinding
 import org.koin.android.ext.android.inject
@@ -28,9 +31,33 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUI()
+
+        val commentStream = RxTextView.textChanges(binding.edtTitle)
+            .map { comment ->
+                (comment.length > 15) || (comment.isEmpty())
+            }
+        commentStream.subscribe {
+            setButton(it)
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            viewModel.setComment(args.item, binding.edtTitle.text.toString())
+            binding.btnFavorite.text = "Update Done"
+        }
+
+        binding.toolbar.setNavigationOnClickListener {
+            val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun setButton(notValid: Boolean) {
+        binding.edtTitle.error = if (notValid) "Comment should not more than 15 or not empty" else null
+        binding.btnFavorite.isEnabled = !notValid
     }
 
     private fun setUI() {
@@ -39,6 +66,7 @@ class DetailFragment : Fragment() {
 
         with(binding) {
             tvUrl.text = args.item.image
+            edtTitle.setText(args.item.comment)
             Glide.with(requireContext())
                 .load(args.item.image)
                 .placeholder(loadIndicator())
@@ -50,6 +78,9 @@ class DetailFragment : Fragment() {
                 status = !status
                 viewModel.setFavorite(args.item, status)
                 setStatusFavorite(status)
+            }
+            if (args.item.date.isNotEmpty()) {
+                binding.btnFavorite.text = "Last Update ${args.item.date}"
             }
         }
     }
@@ -65,8 +96,13 @@ class DetailFragment : Fragment() {
     private fun setStatusFavorite(statusFavorite: Boolean) {
         if (statusFavorite) {
             binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_fill))
+            binding.edtTitle.isEnabled = true
+            binding.btnFavorite.isEnabled = true
         } else {
             binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
+            binding.btnFavorite.text = "Favorite first to add comment"
+            binding.edtTitle.isEnabled = false
+            binding.btnFavorite.isEnabled = false
         }
     }
 }

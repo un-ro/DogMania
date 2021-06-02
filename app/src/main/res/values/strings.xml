@@ -5,4 +5,19 @@
     <string name="favorite">favorite</string>
     <string name="title_search">Search</string>
     <string name="title_loved">Loved</string>
+
+
+    <!-- Breed -->
+    <string-array name="breeds">
+        <item>bulldog</item>
+        <item>eskimo</item>
+        <item>labrador</item>
+        <item>husky</item>
+        <item>russell</item>
+        <item>fox</item>
+        <item>japanese</item>
+        <item>shiba</item>
+        <item>pug</item>
+        <item>doberman</item>
+    </string-array>
 </resources>

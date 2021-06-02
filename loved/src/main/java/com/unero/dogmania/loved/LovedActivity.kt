@@ -2,11 +2,13 @@ package com.unero.dogmania.loved
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.unero.dogmania.adapter.ItemAdapter
 import com.unero.dogmania.loved.databinding.ActivityLovedBinding
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class LovedActivity : AppCompatActivity() {
 
@@ -26,10 +28,19 @@ class LovedActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
+        itemAdapter.onItemClick = {
+            Toast.makeText(this, "Favorite only show list.", Toast.LENGTH_SHORT).show()
+        }
+
         viewModel.favorites.observe(this, { dogs ->
             itemAdapter.setList(dogs)
             itemAdapter.notifyDataSetChanged()
             binding.tvStatus.visibility = if (dogs.isNotEmpty()) View.GONE else View.VISIBLE
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unloadKoinModules(lovedModule)
     }
 }

@@ -10,6 +10,7 @@ import com.unero.dogmania.core.utils.AppExecutors
 import com.unero.dogmania.core.utils.Mapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
 
 class Repository(
     private val remoteDataSource: RemoteDataSource,
@@ -38,6 +39,12 @@ class Repository(
 
         }.asFlow()
 
+    override fun getSearch(breed: String): Flow<ApiResponse<RandomResponse>> {
+        return runBlocking {
+            remoteDataSource.getSearch(breed)
+        }
+    }
+
     override fun getFavorites(): Flow<List<Dog>> {
         return localDataSource.getFavorites().map {
             Mapper.mapEntitiesToDomain(it)
@@ -47,5 +54,10 @@ class Repository(
     override fun setFavorite(dog: Dog, state: Boolean) {
         val entity = Mapper.mapDomainToEntity(dog)
         appExecutors.diskIO().execute { localDataSource.setFavorite(entity, state) }
+    }
+
+    override fun setComment(dog: Dog, comment: String) {
+        val entity = Mapper.mapDomainToEntity(dog)
+        appExecutors.diskIO().execute { localDataSource.setComment(entity, comment)}
     }
 }
