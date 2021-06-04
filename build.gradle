@@ -55,4 +55,7 @@ ext {
 
     // Koin
     koin_version = "3.0.2"
+
+    // Lotie
+    lottie_version = "3.4.1"
 }

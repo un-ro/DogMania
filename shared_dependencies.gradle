@@ -14,4 +14,7 @@ dependencies {
 
     // Leak Canary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+
+    // Lotie
+    implementation "com.airbnb.android:lottie:$lottie_version"
 }

@@ -50,7 +50,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 is ApiResponse.Error -> Toast.makeText(requireContext(), "Cannot Search for $selected", Toast.LENGTH_SHORT).show()
                 is ApiResponse.Success -> {
                     setupRV(Mapper.mapResponseToDomain(it.data))
-                    binding.progressBar.visibility = View.GONE
+                    binding.lottieLoading.visibility = View.GONE
                 }
             }
         })
