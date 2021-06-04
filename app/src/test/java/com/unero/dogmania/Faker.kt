@@ -1,4 +1,4 @@
-package com.unero.dogmania.core
+package com.unero.dogmania
 
 import com.unero.dogmania.core.domain.model.Dog
 import kotlinx.coroutines.flow.Flow

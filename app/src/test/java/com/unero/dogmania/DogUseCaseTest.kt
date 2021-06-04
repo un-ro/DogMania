@@ -1,4 +1,4 @@
-package com.unero.dogmania.core
+package com.unero.dogmania
 
 import com.unero.dogmania.core.domain.repository.IRepository
 import com.unero.dogmania.core.domain.usecase.DogInteractor
