@@ -1,6 +1,6 @@
 # Dog Mania
-
-Submission 1 for MADE Class by Dicoding.
+[![un-ro](https://circleci.com/gh/un-ro/DogMania.svg?style=svg)](https://circleci.com/gh/un-ro/DogMania)
+Submission for MADE class by Dicoding
 
 ## Implementing:
 ### Submission 1
