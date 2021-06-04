@@ -9,6 +9,7 @@ import com.unero.dogmania.core.data.source.remote.network.Endpoint
 import com.unero.dogmania.core.domain.repository.IRepository
 import com.unero.dogmania.core.utils.AppExecutors
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -33,16 +34,22 @@ val roomModule = module {
 }
 
 val retrofitModule = module {
+    val baseUrl = "https://dog.ceo/api/"
     single {
+        val certificatePinner = CertificatePinner.Builder()
+            .add(baseUrl, "sha256/342F7iraaQiyxO39BjpKsHBAgbtoHigHctqQoAsnO1A=")
+            .add(baseUrl, "sha256/FEzVOUp4dF3gI0ZVPRJhFbSJVXR+uQmMH65xhs1glH4=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
     }
     single {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/")
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
