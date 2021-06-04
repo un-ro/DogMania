@@ -62,4 +62,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.mockito:mockito-core:3.9.0"
     testImplementation "org.mockito:mockito-inline:3.9.0"
+
+    // Encryption Database
+    implementation "net.zetetic:android-database-sqlcipher:4.4.0"
+    implementation "androidx.sqlite:sqlite-ktx:2.1.0"
 }
