@@ -17,6 +17,7 @@ class LocalDataSource(private val favoriteDao: DogDao) {
     fun setComment(dog: DogEntity, newComment: String) {
         dog.comment = newComment
         dog.date = Calendar.getInstance().time.toString()
+        dog.isFavorite = true
         favoriteDao.update(dog)
     }
 
