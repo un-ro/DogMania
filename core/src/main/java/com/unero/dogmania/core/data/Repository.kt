@@ -18,7 +18,7 @@ class Repository(
     private val appExecutors: AppExecutors
 ): IRepository {
     override fun getRandom(): Flow<Resource<List<Dog>>> =
-        object : NetworkBoundResource<List<Dog>, RandomResponse>(appExecutors) {
+        object : NetworkBoundResource<List<Dog>, RandomResponse>() {
             override fun loadFromDB(): Flow<List<Dog>> {
                 return localDataSource.getAll().map {
                     Mapper.mapEntitiesToDomain(it)

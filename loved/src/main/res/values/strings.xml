@@ -1,2 +1,3 @@
 <resources>
+    <string name="empty_favorite">Empty Favorite</string>
 </resources>

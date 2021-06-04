@@ -2,10 +2,10 @@ package com.unero.dogmania.core.data
 
 import com.unero.dogmania.core.data.source.remote.network.ApiResponse
 import com.unero.dogmania.core.data.source.remote.network.ApiResponse.*
-import com.unero.dogmania.core.utils.AppExecutors
 import kotlinx.coroutines.flow.*
 
-abstract class NetworkBoundResource<ResultType, RequestType>(appExecutors: AppExecutors) {
+@Suppress("RemoveExplicitTypeArguments")
+abstract class NetworkBoundResource<ResultType, RequestType> {
     private val result: Flow<Resource<ResultType>> = flow {
         emit(Resource.Loading())
         val dbSource = loadFromDB().first()

@@ -13,7 +13,7 @@ object Faker {
         }
     }
 
-    val dog = Dog(
+    private val dog = Dog(
         0,
         "https://images.dog.ceo/breeds/hound-afghan/n02088094_10982.jpg",
         "",
