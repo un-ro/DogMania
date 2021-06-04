@@ -8,6 +8,8 @@ import com.unero.dogmania.core.data.source.remote.RemoteDataSource
 import com.unero.dogmania.core.data.source.remote.network.Endpoint
 import com.unero.dogmania.core.domain.repository.IRepository
 import com.unero.dogmania.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -19,11 +21,15 @@ import java.util.concurrent.TimeUnit
 val roomModule = module {
     factory { get<AppDatabase>().favoriteDao() }
     single {
+        val pass: ByteArray = SQLiteDatabase.getBytes("pulosari".toCharArray())
+        val factory = SupportFactory(pass)
         Room.databaseBuilder(
             androidContext(),
             AppDatabase::class.java,
             "Dog.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
