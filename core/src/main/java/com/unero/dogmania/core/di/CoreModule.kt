@@ -10,6 +10,7 @@ import com.unero.dogmania.core.domain.repository.IRepository
 import com.unero.dogmania.core.utils.AppExecutors
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -35,10 +36,15 @@ val roomModule = module {
 
 val retrofitModule = module {
     single {
+        val hostname = "dog.ceo"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/342F7iraaQiyxO39BjpKsHBAgbtoHigHctqQoAsnO1A=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
     }
     single {
