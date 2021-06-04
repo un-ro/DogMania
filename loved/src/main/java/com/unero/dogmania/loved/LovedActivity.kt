@@ -40,6 +40,7 @@ class LovedActivity : AppCompatActivity() {
         })
     }
 
+    // Fix Memory Leak
     override fun onStop() {
         binding.rvDog.adapter = null
         unloadKoinModules(lovedModule)

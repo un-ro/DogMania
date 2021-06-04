@@ -80,4 +80,11 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.spBreed.adapter = adapter
         }
     }
+
+    // Fix Memory Leak
+    override fun onDestroyView() {
+        binding.rvResult.adapter = null
+        _binding = null
+        super.onDestroyView()
+    }
 }

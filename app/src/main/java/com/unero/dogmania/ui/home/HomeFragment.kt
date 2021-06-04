@@ -96,6 +96,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // Fix Memory Leak
     override fun onDestroyView() {
         binding.rvDog.adapter = null
         _binding = null
