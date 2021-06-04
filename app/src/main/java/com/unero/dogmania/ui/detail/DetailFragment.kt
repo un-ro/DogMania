@@ -105,4 +105,9 @@ class DetailFragment : Fragment() {
             binding.btnFavorite.isEnabled = false
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

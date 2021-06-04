@@ -35,12 +35,14 @@ class LovedActivity : AppCompatActivity() {
         viewModel.favorites.observe(this, { dogs ->
             itemAdapter.setList(dogs)
             itemAdapter.notifyDataSetChanged()
+            binding.lottieEmpty.visibility = if (dogs.isNotEmpty()) View.GONE else View.VISIBLE
             binding.tvStatus.visibility = if (dogs.isNotEmpty()) View.GONE else View.VISIBLE
         })
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        binding.rvDog.adapter = null
         unloadKoinModules(lovedModule)
+        super.onStop()
     }
 }

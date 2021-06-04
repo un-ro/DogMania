@@ -75,6 +75,7 @@ class HomeFragment : Fragment() {
                         dogs.data?.let { itemAdapter.setList(it) }
                     }
                     is Resource.Error -> {
+                        Toast.makeText(requireContext(), "Something Wrong", Toast.LENGTH_SHORT).show()
                         showLoading(false)
                     }
                 }
@@ -89,14 +90,15 @@ class HomeFragment : Fragment() {
 
     private fun showLoading(boolean: Boolean) {
         if (boolean) {
-            binding.progressBar.visibility = View.VISIBLE
+            binding.lottieLoading.visibility = View.VISIBLE
         } else {
-            binding.progressBar.visibility = View.GONE
+            binding.lottieLoading.visibility = View.GONE
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        binding.rvDog.adapter = null
         _binding = null
+        super.onDestroyView()
     }
 }
