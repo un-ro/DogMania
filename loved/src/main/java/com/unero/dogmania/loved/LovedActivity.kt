@@ -1,5 +1,6 @@
 package com.unero.dogmania.loved
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,8 +11,8 @@ import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
+@SuppressLint("GoogleAppIndexingApiWarning")
 class LovedActivity : AppCompatActivity() {
-
     private val viewModel by inject<LovedViewModel>()
     private val itemAdapter by inject<ItemAdapter>()
     private lateinit var binding: ActivityLovedBinding

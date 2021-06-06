@@ -13,7 +13,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@mipmap/logo_foreground"
@@ -30,6 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
+        tools:ignore="UnusedIds"
         tools:listitem="@layout/item" />
 
     <com.airbnb.lottie.LottieAnimationView
@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:text="@string/empty_favorite"
         android:visibility="gone"
+        tools:ignore="UnusedIds"
         app:layout_constraintTop_toBottomOf="@id/lottie_empty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
