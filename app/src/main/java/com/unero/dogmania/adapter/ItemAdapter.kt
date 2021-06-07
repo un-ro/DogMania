@@ -31,7 +31,7 @@ class ItemAdapter(private val context: Context): RecyclerView.Adapter<ItemAdapte
             progress.start()
             binding.apply {
 
-                binding.comment.text = if (dog.comment.isNotEmpty()) dog.comment else "Image from dog.ceo"
+                binding.comment.text = if (dog.comment.isNotEmpty()) dog.comment else context.getString(com.unero.dogmania.R.string.credit)
 
                 Glide.with(root)
                     .load(dog.image)

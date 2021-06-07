@@ -1,10 +1,20 @@
 <resources>
     <string name="app_name">Dog Mania</string>
-    <string name="title_favorite">Favorite</string>
     <string name="add_comment">Add Comment (max 15)</string>
-    <string name="favorite">favorite</string>
-    <string name="title_search">Search</string>
     <string name="title_loved">Loved</string>
+    <string name="update">Update</string>
+    <string name="feature_search">Feature Search</string>
+    <string name="feature_favorite">Feature Favorite</string>
+    <string name="update_done">Update Done</string>
+    <string name="update_error">Comment should not more than 15 or not empty</string>
+    <string name="fav_information">Favorite first to add comment</string>
+    <string name="update_last">Last Update %s</string>
+    <string name="credit">Image from dog.ceo</string>
+    <string name="response_empty">Empty</string>
+    <string name="search_error">Cannot Search for %s</string>
+    <string name="search_warning">Search only show list.</string>
+    <string name="easter">Woof woof</string>
+    <string name="response_error">Something Wrong</string>
 
 
     <!-- Breed -->

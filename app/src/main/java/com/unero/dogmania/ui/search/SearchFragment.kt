@@ -46,8 +46,8 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val selected = parent.getItemAtPosition(position)
         viewModel.search(selected.toString()).observe(viewLifecycleOwner, {
             when (it) {
-                is ApiResponse.Empty -> Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT).show()
-                is ApiResponse.Error -> Toast.makeText(requireContext(), "Cannot Search for $selected", Toast.LENGTH_SHORT).show()
+                is ApiResponse.Empty -> Toast.makeText(requireContext(), getString(R.string.response_empty), Toast.LENGTH_SHORT).show()
+                is ApiResponse.Error -> Toast.makeText(requireContext(), getString(R.string.search_error, selected), Toast.LENGTH_SHORT).show()
                 is ApiResponse.Success -> {
                     setupRV(Mapper.mapResponseToDomain(it.data))
                     binding.lottieLoading.visibility = View.GONE
@@ -66,7 +66,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         itemAdapter.onItemClick = {
-            Toast.makeText(requireContext(), "Search only show list.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.search_warning), Toast.LENGTH_SHORT).show()
         }
     }
 

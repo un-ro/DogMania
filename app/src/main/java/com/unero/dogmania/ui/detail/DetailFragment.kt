@@ -46,7 +46,7 @@ class DetailFragment : Fragment() {
 
         binding.btnFavorite.setOnClickListener {
             viewModel.setComment(args.item, binding.edtTitle.text.toString())
-            binding.btnFavorite.text = "Update Done"
+            binding.btnFavorite.text = getString(R.string.update_done)
         }
 
         binding.toolbar.setNavigationOnClickListener {
@@ -56,7 +56,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setButton(notValid: Boolean) {
-        binding.edtTitle.error = if (notValid) "Comment should not more than 15 or not empty" else null
+        binding.edtTitle.error = if (notValid) getString(R.string.update_error) else null
         binding.btnFavorite.isEnabled = !notValid
     }
 
@@ -80,7 +80,7 @@ class DetailFragment : Fragment() {
                 setStatusFavorite(status)
             }
             if (args.item.date.isNotEmpty()) {
-                binding.btnFavorite.text = "Last Update ${args.item.date}"
+                binding.btnFavorite.text = getString(R.string.update_last, args.item.date)
             }
         }
     }
@@ -100,7 +100,7 @@ class DetailFragment : Fragment() {
             binding.btnFavorite.isEnabled = true
         } else {
             binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
-            binding.btnFavorite.text = "Favorite first to add comment"
+            binding.btnFavorite.text = getString(R.string.fav_information)
             binding.edtTitle.isEnabled = false
             binding.btnFavorite.isEnabled = false
         }

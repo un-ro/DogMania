@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/item_search"
-        android:title="Search"
+        android:title="@string/feature_search"
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/item_favorite"
-        android:title="Favorite"
+        android:title="@string/feature_favorite"
         android:icon="@drawable/ic_favorite_fill"
         app:showAsAction="ifRoom"/>
 </menu>

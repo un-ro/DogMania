@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.toolbar.setNavigationOnClickListener {
-            Toast.makeText(requireContext(), "Woof woof", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.easter), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
                         dogs.data?.let { itemAdapter.setList(it) }
                     }
                     is Resource.Error -> {
-                        Toast.makeText(requireContext(), "Something Wrong", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(R.string.response_error), Toast.LENGTH_SHORT).show()
                         showLoading(false)
                     }
                 }
