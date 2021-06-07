@@ -23,6 +23,10 @@ class LocalDataSource(private val favoriteDao: DogDao) {
 
     fun setFavorite(dog: DogEntity, newState: Boolean) {
         dog.isFavorite = newState
+        if (!newState) {
+            dog.comment = ""
+            dog.date = ""
+        }
         favoriteDao.update(dog)
     }
 }
